@@ -22,7 +22,7 @@ jobs:
       - name: Write release version
         run: |
           TAG="${{ github.event.ref }}"
-          [[ -n $TAG ]] || exit 1
+          [[ -n ${TAG#refs/tags/v} ]] || exit 1
           echo "PDFJS_VERSION=${TAG#refs/tags/v}" >> $GITHUB_ENV
 
       - uses: actions/checkout@v4
@@ -58,12 +58,16 @@ jobs:
             type=semver,pattern={{major}}
             type=sha
 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
       - name: Build the Docker image
         uses: docker/build-push-action@v6
         with:
+          platforms: linux/amd64,linux/arm64
           build-args: |
             PDFJS_VERSION=${{env.PDFJS_VERSION}}
           push: true

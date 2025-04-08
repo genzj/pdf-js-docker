@@ -6,7 +6,7 @@ server.
 ## Usage
 
 ```sh
-docker run -p 9090:80 pdfjs:5.1.91
+docker run -p 9090:80 genzj/pdf-js-docker:v5
 ```
 
 Then open [http://127.0.0.1:9090/viewer.html] to use the PDF.JS viewer.
@@ -14,5 +14,5 @@ Then open [http://127.0.0.1:9090/viewer.html] to use the PDF.JS viewer.
 ## Build
 
 ```sh
-docker build --build-arg PDFJS_VERSION=5.1.91 -t pdfjs:v5.1.91 .
+docker build --build-arg PDFJS_VERSION=5.1.91 -t pdf-js-docker:v5.1.91 .
 ```
