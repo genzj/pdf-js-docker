@@ -20,7 +20,7 @@ FROM caddy:2
 RUN rm -rf /usr/share/caddy/*
 
 # Copy pdf.js contents from builder stage
-COPY --from=builder /pdf.js/* /usr/share/caddy/
+COPY --from=builder /pdf.js /usr/share/caddy/
 
 # Expose port 80
 EXPOSE 80
